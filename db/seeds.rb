@@ -4,10 +4,10 @@ Actor.delete_all
 Role.delete_all
 User.delete_all
 
-User.create name: 'Margaret Hamilton', email: 'margaret@example.org', password: 'apollo'
-User.create name: 'Grace Hopper', email: 'grace@example.org', password: 'cobol'
-User.create name: 'Alan Turing', email: 'alan@example.org', password: 'imitationgame'
-User.create name: 'Cookie Monster', email: 'cookie@example.org', password: 'cookies'
+User.create name: 'Margaret Hamilton', email: 'margaret@example.org', password: 'apollo', password_confirmation: 'apollo'
+User.create name: 'Grace Hopper', email: 'grace@example.org', password: 'cobol', password_confirmation: 'cobol'
+User.create name: 'Alan Turing', email: 'alan@example.org', password: 'imitationgame', password_confirmation: 'imitationgame'
+User.create name: 'Cookie Monster', email: 'cookie@example.org', password: 'cookies', password_confirmation: 'cookies'
 
 george = Director.create(:name => "George Lucas", :photo_url => "http://ia.media-imdb.com/images/M/MV5BMTA0Mjc0NzExNzBeQTJeQWpwZ15BbWU3MDEzMzQ3MDI@._V1_UY317_CR0,0,214,317_AL_.jpg")
 ron = Director.create(:name => "Ron Howard", :photo_url => "http://ia.media-imdb.com/images/M/MV5BMTkzMDczMjUxNF5BMl5BanBnXkFtZTcwODY1Njk5Mg@@._V1_UX214_CR0,0,214,317_AL_.jpg")

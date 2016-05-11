@@ -11,6 +11,7 @@
       <%= form.text_field :name, required: true %>
       <%= form.email_field :email, required: true %>
       <%= form.text_field :password, required: true %>
+      <%= form.text_field :password_confirmation, label: "Password Again", required: true %>
       <%= form.submit "Sign Me Up!", class: 'btn btn-success'%>
 
     <% end %>
