@@ -2,14 +2,21 @@
   <h1>My Account</h1>
 </div>
 
-<p>
-  Name: <%= @user.name %>
-</p>
-
-<p>
-  Email: <%= @user.email %>
-</p>
-
-<p>
-  Password: <%= @user.password %>
-</p>
+<% current_user = User.find_by(id: session[:user_id]) %>
+<% if current_user.present? %>
+  <% if params["id"] == current_user.id.to_s %>
+    <p>
+      Name: <%= @user.name %>
+    </p>
+    
+    <p>
+      Email: <%= @user.email %>
+    </p>
+    
+    <p>
+      Password: <%= @user.password %>
+    </p>
+  <% else %>
+    <h2 class="text-danger">Nice Try!</h2>
+  <% end %>
+<% end %>
