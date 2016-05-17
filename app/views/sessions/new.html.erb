@@ -6,7 +6,7 @@
     <%= bootstrap_form_tag url: "/sessions" do |form| %>
 
       <%= form.email_field :email, required: true %>
-      <%= form.text_field :password, required: true %>
+      <%= form.password_field :password, required: true %>
       <%= form.submit "Let Me In!", class: 'btn btn-success'%>
 
     <% end %>
