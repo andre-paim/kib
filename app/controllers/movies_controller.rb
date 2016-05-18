@@ -31,6 +31,11 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+  
+    city = City.find_by(id: params[:id])    
+    web_file = open("http://api.openweathermap.org/data/2.5/weather?q=#{city.name}&APIKEY=4ce6f502d38ddae567bf1702b05e168c&units=imperial")
+    @json = JSON.parse(web_file.read())
+    
   end
 
   def show
