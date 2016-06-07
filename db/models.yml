@@ -1,29 +1,43 @@
 User
-  name: text
+  first_name: text
+  last_name: text
   email: text
+  program: text
+  graduation_year: integer
   password_digest: text
+  admin: boolean(false)
+  time_registration: integer
   
-Movie
-  title: text
-  image_url: text
-  mpaa: text
-  price: integer
-  year: integer
-  plot: text
-  director_id: integer
-  runtime: integer
-
-Director
+Course
   name: text
-  photo_url: text
+  subject: text
+  kellogg_code: text
 
-Actor
-  name: text
+Teacher
+  user_id: integer
+  course_id: integer
+  active: boolean
+  # times_taught: integer
+  
+Student
+  user_id: integer
+  course_id: integer
+  active: boolean
+  # times_learned: integer
 
-Role
-  movie_id: integer
-  actor_id: integer
-  character_name: text
+Matching
+  class_ref: integer
+  teacher_id: integer
+  student_id: integer
+  course_id: integer
+  duration: integer
+  date_status: integer
+  status: text
+  date_scheduled: integer
+  teacher_was_present: boolean
+  student_was_present: boolean
+  rating_teacher: integer
+  rating_student: integer
 
 
 # Example table for a typical Book model.

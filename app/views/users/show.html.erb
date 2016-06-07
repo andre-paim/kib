@@ -2,21 +2,63 @@
   <h1>My Account</h1>
 </div>
 
-<% current_user = User.find_by(id: session[:user_id]) %>
-<% if current_user.present? %>
-  <% if params["id"] == current_user.id.to_s %>
-    <p>
-      Name: <%= @user.name %>
-    </p>
-    
-    <p>
-      Email: <%= @user.email %>
-    </p>
-    
-    <p>
-      Password: <%= @user.password %>
-    </p>
-  <% else %>
-    <h2 class="text-danger">Nice Try!</h2>
-  <% end %>
-<% end %>
+<p>
+  Name: <%= @user.first_name + " " + @user.last_name %>
+</p>
+
+<p>
+  Email: <%= @user.email %>
+</p>
+
+<p>
+  <div class="page-header">
+    <h1>My Classes</h1>
+  </div>
+</p>
+
+<table class="table table-striped table-hover table-responsive">
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Course Name</th>
+      <th>Kellogg Code</th>
+      <th>Teach</th>
+      <th>Learn</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr>
+        
+        <td><%= course.subject %></td>
+        <td><%= course.name %></td>
+        <td><%= course.kellogg_code %></td>
+        
+        <% teacher = @user.teachers.find_by(course_id: course.id) %>
+        <% if teacher.present? %>
+          <% if teacher.active? %>
+            <td><%= link_to "Remove", "/teachers/#{teacher.id}?mode=remove", method: :patch %></td>
+          <% else %>
+            <td><%= link_to "I want!", "/teachers/#{teacher.id}?mode=add", method: :patch %></td>
+          <% end %>
+        <% else %>
+          <td><%= link_to "I want!", "/teachers/new?course_id=#{course.id}" %></td>
+        <% end %>
+        
+        <% student = @user.students.find_by(course_id: course.id) %>
+        <% if student.present? %>
+          <% if student.active? %>
+            <td><%= link_to "Remove", "/students/#{student.id}?mode=remove", method: :patch %></td>
+          <% else %>
+            <td><%= link_to "I want!", "/students/#{student.id}?mode=add", method: :patch %></td>
+          <% end %>
+        <% else %>
+          <td><%= link_to "I want!", "/students/new?course_id=#{course.id}" %></td>
+        <% end %>
+        
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

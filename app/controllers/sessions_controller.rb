@@ -9,14 +9,14 @@ class SessionsController < ApplicationController
     if the_user.present?
       if the_user.authenticate(params[:password])
         session[:user_id] = the_user.id
-        flash[:notice] = "Welcome back, " + the_user.name
+        flash[:success] = "Welcome back, " + the_user.first_name + "!"
         redirect_to "/"
       else
-        flash[:notice] = "Ah-ah-ahh! You didn't say the magic word! Please try again."
+        flash[:warning] = "Wrong password! Please try again."
         redirect_to "/sessions/new"
       end
     else
-      flash[:notice] = "We don't have a user with that email address.  Please try again."
+      flash[:warning] = "We don't have a user with that email address.  Please try again."
       redirect_to "/sessions/new"
     end
 
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil   # or reset_session
-    flash[:notice] = "You are logged out. Goodbye!"
+    flash[:info] = "You are logged out. Goodbye!"
     redirect_to "/"
   end
 

@@ -9,35 +9,55 @@
  */
 
 body {
-  margin-top: 30px;
-}
-.navbar-inverse .navbar-brand {
-  font-family: 'Luckiest Guy', cursive;
-  font-size: 36px;
-  color: #ff3061;
-  padding-top: 20px;
-}
-.thumbnail {
-  border: none;
-  text-align: center;
-}
-.thumbnail a>img, .thumbnail>img, img {
-  height: 317px;
-  width: 211px;
-  box-shadow: 8px 8px 8px #999;
-  margin-bottom: 8px;
-}
-h1.title {
-  padding: 0 30px 30px 0;
-}
-h2 {
-  font-size: 22px;
+  background: #EFEFEB;
+  font-family: 'PT Sans', Helvetica, sans-serif;
 }
 
-.mpaa {
-  font-size: 0.4em;
-  text-transform: uppercase;
-  border: 1px solid #ccc;
-  padding: 4px;
-  vertical-align: middle;
+.navbar-default .navbar-brand {
+  font-size: 36px;
+  color: #7030A0;
+}
+
+.navbar-text {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.navbar {
+  background:  white;
+  border-bottom: none;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.thumbnail {
+  box-shadow: 4px 4px 4px #999;
+}
+
+hr {
+   display: block;
+   position: relative;
+   padding: 0;
+   margin: 8px auto;
+   height: 0;
+   width: 100%;
+   max-height: 0;
+   font-size: 1px;
+   line-height: 0;
+   clear: both;
+   border: none;
+   border-top: 1px solid #ccc;
+}
+
+footer {
+  margin-top: 30px;
+}
+
+/*FAQ*/
+.faqpage {
+  margin: 40px 0;
+}
+.faqpage p + h4 {
+  margin-top: 28px;
 }

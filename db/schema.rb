@@ -13,41 +13,58 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
-  create_table "actors", force: :cascade do |t|
+  create_table "courses", force: :cascade do |t|
     t.text "name"
+    t.text "subject"
+    t.text "kellogg_code"
   end
 
-  create_table "directors", force: :cascade do |t|
-    t.text "name"
-    t.text "photo_url"
+  create_table "matchings", force: :cascade do |t|
+    t.integer "class_ref"
+    t.integer "teacher_id"
+    t.integer "student_id"
+    t.integer "course_id"
+    t.integer "duration"
+    t.integer "date_status"
+    t.text    "status"
+    t.integer "date_scheduled"
+    t.boolean "teacher_was_present", default: false
+    t.boolean "student_was_present", default: false
+    t.integer "rating_teacher"
+    t.integer "rating_student"
   end
 
-  create_table "movies", force: :cascade do |t|
-    t.text    "title"
-    t.text    "image_url"
-    t.text    "mpaa"
-    t.integer "price"
-    t.integer "year"
-    t.text    "plot"
-    t.integer "director_id"
-    t.integer "runtime"
+  add_index "matchings", ["course_id"], name: "index_matchings_on_course_id"
+  add_index "matchings", ["student_id"], name: "index_matchings_on_student_id"
+  add_index "matchings", ["teacher_id"], name: "index_matchings_on_teacher_id"
+
+  create_table "students", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+    t.boolean "active",    default: false
   end
 
-  add_index "movies", ["director_id"], name: "index_movies_on_director_id"
+  add_index "students", ["course_id"], name: "index_students_on_course_id"
+  add_index "students", ["user_id"], name: "index_students_on_user_id"
 
-  create_table "roles", force: :cascade do |t|
-    t.integer "movie_id"
-    t.integer "actor_id"
-    t.text    "character_name"
+  create_table "teachers", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "course_id"
+    t.boolean "active",    default: false
   end
 
-  add_index "roles", ["actor_id"], name: "index_roles_on_actor_id"
-  add_index "roles", ["movie_id"], name: "index_roles_on_movie_id"
+  add_index "teachers", ["course_id"], name: "index_teachers_on_course_id"
+  add_index "teachers", ["user_id"], name: "index_teachers_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.text "name"
-    t.text "email"
-    t.text "password_digest"
+    t.text    "first_name"
+    t.text    "last_name"
+    t.text    "email"
+    t.text    "program"
+    t.integer "graduation_year"
+    t.text    "password_digest"
+    t.boolean "admin",             default: false
+    t.integer "time_registration"
   end
 
 end

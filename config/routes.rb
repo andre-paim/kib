@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
 
-  root 'movies#index'
+  root 'pages#home'
 
-  resources :movies
-  resources :directors
-  resources :actors
+  resources :courses
+  resources :matches
+  resources :students
+  resources :teachers
 
   resources :users
   resources :sessions
-
+  
+  get '/how-it-works' => 'pages#how-it-works'
+  get '/calendar' => 'pages#calendar'
+  # get '/about' => 'pages#about'
 
 end

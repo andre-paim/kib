@@ -1,79 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Buyflix</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet" type="text/css">
-  <%= javascript_include_tag 'application' %>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+  <title>KIB - Kellog in a Bottle</title>
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'>
+  
+  <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag    'application', media: 'all' %>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <%= csrf_meta_tags %>
+  
 </head>
 
 <body>
 
-  <div class="container">
-
-    <nav class="navbar navbar-inverse" role="navigation">
-      <!-- Brand and toggle get grouped for better mobile display -->
+  <nav class="navbar navbar-default">
+    <div class="container">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-
-        <!-- Rails equivalent to -->
-        <!-- <a href="/" class="navbar-brand">Buyflix</a> -->
-        <%= link_to "Buyflix", "/", class: "navbar-brand" %>
+        <%= link_to "kellogg in a bottle", "/", class: "navbar-brand" %>
       </div>
-
+  
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav navbar-text">
           <li>
-            <a href="/movies">Movies</a>
+            <a href="/how-it-works">How it works</a>
           </li>
           <li>
-            <a href="/directors">Directors</a>
+            <a href="/calendar">Calendar</a>
           </li>
-          <li>
-            <a href="/actors">Actors</a>
-          </li>
-          <li>
-            <a href="/users">Users</a>
-          </li>
+          <!--<li>-->
+          <!--  <a href="/about">About us</a>-->
+          <!--</li>-->
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right navbar-text">
           <% if session[:user_id].present? %>
             <% current_user = User.find_by(id: session[:user_id]) %>
-            <li><p class="navbar-text">Hello, <%= current_user.name %></p></li>
+            <li><%= link_to "Hello, #{current_user.first_name}!", "#" %></li>
+            
+            <% if User.find_by(id: session[:user_id]).admin %>
+              <li><%= link_to "Admin", "/users" %></li>
+            <% end %>
+            
             <li><%= link_to "My Account", "/users/#{session[:user_id]}" %></li>
             <li><%= link_to "Sign Out", "/sessions/#{session[:user_id]}", method: :delete %></li>
           <% else %>
             <li><%= link_to "Sign Up", '/users/new' %></li>
-            <li><%= link_to "Sign In", '/sessions/new' %></li>
+            <li><%= link_to "Login", '/sessions/new' %></li>
           <% end %>
         </ul>
-      </div>
-    </nav>
-  </div>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
 
   <div class="container">
 
-    <% if flash[:notice].present? %>
-      <div class="alert alert-info">
+    <% if flash[:danger].present? %>
+      <div class="alert alert-danger" role="alert">
         <button class="close" data-dismiss="alert"><span>&times;</span></button>
-        <%= flash[:notice] %>
+        <%= flash[:danger] %>
+      </div>
+    <% end %>
+    <% if flash[:warning].present? %>
+      <div class="alert alert-warning" role="alert">
+        <button class="close" data-dismiss="alert"><span>&times;</span></button>
+        <%= flash[:warning] %>
+      </div>
+    <% end %>
+    <% if flash[:success].present? %>
+      <div class="alert alert-success" role="alert">
+        <button class="close" data-dismiss="alert"><span>&times;</span></button>
+        <%= flash[:success] %>
+      </div>
+    <% end %>
+    <% if flash[:info].present? %>
+      <div class="alert alert-info" role="alert">
+        <button class="close" data-dismiss="alert"><span>&times;</span></button>
+        <%= flash[:info] %>
       </div>
     <% end %>
 
     <%= yield %>
 
   </div>
+  
+  <!-- START FOOTER -->
+  <div class="container footer">
+  <footer>
+      <hr>
+      <p class="pull-right"><a href="#" class="scroll-top">&middot; Back to top &middot;</a></p>
+      <p>&copy; 2016 Kellogg in a Bottle.</p>
+    </footer>
+  </div>
+  <!-- /END FOOTER -->
 
 </body>
 </html>
