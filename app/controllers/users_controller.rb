@@ -40,6 +40,7 @@ class UsersController < ApplicationController
       if user.save
         flash[:success] = "You signed up successfully!"
         user_signin = User.find_by(email: user.email)
+        # log user and redirect to user show page
         if user_signin.present?
           session[:user_id] = user_signin.id
         end

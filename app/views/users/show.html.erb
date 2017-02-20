@@ -38,23 +38,23 @@
         <% teacher = @user.teachers.find_by(course_id: course.id) %>
         <% if teacher.present? %>
           <% if teacher.active? %>
-            <td><%= link_to "Remove", "/teachers/#{teacher.id}?mode=remove", method: :patch %></td>
+            <td><%= link_to "Remove", "/teachers/#{teacher.id}?mode=remove", method: :patch, class: "remove", remote: true, id: dom_id(teacher) %></td>
           <% else %>
-            <td><%= link_to "I want!", "/teachers/#{teacher.id}?mode=add", method: :patch %></td>
+            <td><%= link_to "I want!", "/teachers/#{teacher.id}?mode=add", method: :patch, class: "add", remote: true, id: dom_id(teacher) %></td>
           <% end %>
         <% else %>
-          <td><%= link_to "I want!", "/teachers/new?course_id=#{course.id}" %></td>
+          <td><%= link_to "I want!", "/teachers/new?course_id=#{course.id}", remote: true, id: "teacher_new_#{course.id}" %></td>
         <% end %>
         
         <% student = @user.students.find_by(course_id: course.id) %>
         <% if student.present? %>
           <% if student.active? %>
-            <td><%= link_to "Remove", "/students/#{student.id}?mode=remove", method: :patch %></td>
+            <td><%= link_to "Remove", "/students/#{student.id}?mode=remove", method: :patch, class: "remove", remote: true, id: dom_id(student) %></td>
           <% else %>
-            <td><%= link_to "I want!", "/students/#{student.id}?mode=add", method: :patch %></td>
+            <td><%= link_to "I want!", "/students/#{student.id}?mode=add", method: :patch, remote: true, id: dom_id(student) %></td>
           <% end %>
         <% else %>
-          <td><%= link_to "I want!", "/students/new?course_id=#{course.id}" %></td>
+          <td><%= link_to "I want!", "/students/new?course_id=#{course.id}", remote: true, id: "student_new_#{course.id}" %></td>
         <% end %>
         
       </tr>

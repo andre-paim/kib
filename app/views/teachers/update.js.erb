@@ -1,0 +1,11 @@
+if ($("#<%= dom_id(@teacher) %>").hasClass("remove")) {
+  $("#<%= dom_id(@teacher) %>").removeClass("remove");
+  $("#<%= dom_id(@teacher) %>").addClass("add");
+  $("#<%= dom_id(@teacher) %>").text("I want!");
+  $("#<%= dom_id(@teacher) %>").attr("href", "/teachers/<%= @teacher.id %>?mode=add");
+} else {
+  $("#<%= dom_id(@teacher) %>").removeClass("add");
+  $("#<%= dom_id(@teacher) %>").addClass("remove");
+  $("#<%= dom_id(@teacher) %>").text("Remove");
+  $("#<%= dom_id(@teacher) %>").attr("href", "/teachers/<%= @teacher.id %>?mode=remove");
+}

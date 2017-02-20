@@ -1,0 +1,5 @@
+$("#student_new_<%= @student.course_id %>").addClass("remove");
+$("#student_new_<%= @student.course_id %>").text("Remove");
+$("#student_new_<%= @student.course_id %>").attr("href", "/students/<%= @student.id %>?mode=remove");
+$("#student_new_<%= @student.course_id %>").attr("data-method", "patch");
+$("#student_new_<%= @student.course_id %>").attr("id", "student_<%= @student.id %>");

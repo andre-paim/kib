@@ -31,9 +31,7 @@ body {
   padding-top: 10px;
 }
 
-.thumbnail {
-  box-shadow: 4px 4px 4px #999;
-}
+.thumbnail { box-shadow: 4px 4px 4px #999; }
 
 hr {
    display: block;
@@ -61,3 +59,8 @@ footer {
 .faqpage p + h4 {
   margin-top: 28px;
 }
+
+a.remove:link { color:#a94442; text-decoration:none; font-weight:normal; }
+a.remove:visited { color: #a94442; text-decoration:none; font-weight:normal; }
+a.remove:hover { color: #a94442; text-decoration:underline; font-weight:normal; }
+a.remove:active { color: #a94442; text-decoration:none; font-weight:normal; }
